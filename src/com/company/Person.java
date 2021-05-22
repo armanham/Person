@@ -62,7 +62,7 @@ public class Person {
     public void setSex(String sex) {
         if (sex.equals("male") || sex.equals("female")) {
             this.sex = sex;
-        }else {
+        } else {
             System.out.println("Invalid sex!");
         }
     }
@@ -73,10 +73,21 @@ public class Person {
 
     public void setPassportId(String passportId) {
         if (passportId.length() == 6) {
-            this.passportId = passportId;
+            if (isNumeric(passportId)) {
+                this.passportId = passportId;
+            }
         } else {
             System.out.println("Invalid passport ID!");
         }
+    }
+
+    private boolean isNumeric(String passportId) {
+        for (char c : passportId.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
